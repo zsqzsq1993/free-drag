@@ -1,8 +1,8 @@
-import draggable from "../../src"
+import freeDrag from "../../src"
 
 const ball = document.getElementById('ball')
 if (ball) {
-  draggable({
+  freeDrag({
     element: ball
   })
 }
