@@ -1,4 +1,4 @@
-import DummyClass from '../src/free-drag'
+import DummyClass from '../src'
 
 /**
  * Dummy test
