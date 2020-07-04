@@ -1,16 +1,18 @@
 import { PassHandler } from '../type'
+import { retPosViaEvent } from '../helpers/utils'
 
 export function processBelowElement(element: HTMLElement) {
   let currentBelow: any = null
 
   return function(
-    event: MouseEvent,
+    event: MouseEvent | TouchEvent,
     className: string,
     enterHandler: PassHandler,
     leaveHandler: PassHandler
   ) {
     element.hidden = true
-    const belowElement = document.elementFromPoint(event.pageX, event.pageY)
+    const { pageX, pageY } = retPosViaEvent(event)
+    const belowElement = document.elementFromPoint(pageX, pageY)
     element.hidden = false
     let belowDraggable: any
     if (belowElement) {

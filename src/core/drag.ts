@@ -8,7 +8,7 @@ function freeDrag(config: freeDragConfig) {
 
   element.ondragstart = () => false
 
-  element.onmousedown = function(downEvent) {
+  element.onmousedown = element.ontouchstart = function(downEvent: MouseEvent | TouchEvent) {
     const positions: any = getPositions(downEvent, element)
 
     const processBelow = processBelowElement(element)
@@ -17,18 +17,20 @@ function freeDrag(config: freeDragConfig) {
 
     moveElement(downEvent, element, positions)
 
-    document.addEventListener('mousemove', moveHandler, false)
+    addEventHandlers()
 
-    document.onmouseup = function() {
-      document.removeEventListener('mousemove', moveHandler, false)
-      document.onmouseup = null
-    }
+    function addEventHandlers() {
+      document.onmouseup = document.ontouchend = function() {
+        document.onmousemove = document.ontouchmove = null
+        document.onmouseup = document.ontouchend = null
+      }
 
-    function moveHandler(moveEvent: MouseEvent) {
-      moveElement(moveEvent, element, positions)
+      document.onmousemove = document.ontouchmove = function(moveEvent: MouseEvent | TouchEvent) {
+        moveElement(moveEvent, element, positions)
 
-      if (draggableClassName && (leaveHandler || enterHandler)) {
-        processBelow(moveEvent, draggableClassName, enterHandler!, leaveHandler!)
+        if (draggableClassName && (leaveHandler || enterHandler)) {
+          processBelow(moveEvent, draggableClassName, enterHandler!, leaveHandler!)
+        }
       }
     }
   }

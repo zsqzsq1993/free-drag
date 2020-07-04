@@ -1,10 +1,12 @@
+import { retPosViaEvent } from '../helpers/utils'
+
 export function normalizeElement(element: HTMLElement) {
   element.style.position = 'fixed'
   element.style.zIndex = '1000'
   element.style.cursor = 'pointer'
 }
 
-export function moveElement(event: MouseEvent, element: HTMLElement, positions: any) {
+export function moveElement(event: MouseEvent | TouchEvent, element: HTMLElement, positions: any) {
   const {
     marginLeft,
     marginTop,
@@ -19,7 +21,7 @@ export function moveElement(event: MouseEvent, element: HTMLElement, positions: 
     offsetHeight,
     offsetWidth
   } = positions
-  const { pageX, pageY } = event
+  const { pageX, pageY } = retPosViaEvent(event)
   const x = Math.min(
     Math.max(0 - paddingLeft - marginLeft, pageX - offsetX),
     innerWidth - offsetWidth + paddingRight - marginLeft

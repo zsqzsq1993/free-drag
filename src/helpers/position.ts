@@ -1,4 +1,4 @@
-import { numberize } from './utils'
+import { numberize, retPosViaEvent } from './utils'
 
 export function getEleMarginAndPadding(element: HTMLElement): any {
   const style: any = window.getComputedStyle(element)
@@ -11,7 +11,7 @@ export function getEleMarginAndPadding(element: HTMLElement): any {
   return styleObjs
 }
 
-export function getPositions(event: MouseEvent, element: HTMLElement): any {
+export function getPositions(event: MouseEvent | TouchEvent, element: HTMLElement): any {
   const {
     marginLeft,
     marginTop,
@@ -20,8 +20,9 @@ export function getPositions(event: MouseEvent, element: HTMLElement): any {
     paddingRight,
     paddingBottom
   } = getEleMarginAndPadding(element)
-  const offsetX = event.clientX - element.getBoundingClientRect().left + marginLeft
-  const offsetY = event.clientY - element.getBoundingClientRect().top + marginTop
+  const { clientX, clientY } = retPosViaEvent(event)
+  const offsetX = clientX - element.getBoundingClientRect().left + marginLeft
+  const offsetY = clientY - element.getBoundingClientRect().top + marginTop
   const { innerHeight, innerWidth } = window
   const { offsetHeight, offsetWidth } = element
   return {
