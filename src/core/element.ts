@@ -4,7 +4,7 @@ export function normalizeElement(element: HTMLElement) {
   element.style.cursor = 'pointer'
 }
 
-export function moveElement(pageX: number, pageY: number, element: HTMLElement, positions: any) {
+export function moveElement(event: MouseEvent, element: HTMLElement, positions: any) {
   const {
     marginLeft,
     marginTop,
@@ -19,6 +19,7 @@ export function moveElement(pageX: number, pageY: number, element: HTMLElement, 
     offsetHeight,
     offsetWidth
   } = positions
+  const { pageX, pageY } = event
   const x = Math.min(
     Math.max(0 - paddingLeft - marginLeft, pageX - offsetX),
     innerWidth - offsetWidth + paddingRight - marginLeft
