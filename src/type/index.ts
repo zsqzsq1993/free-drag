@@ -1,5 +1,5 @@
-export interface freeDragConfig {
-  element: HTMLElement
+export interface FreeDragConfig {
+  element?: HTMLElement
   leaveHandler?: PassHandler
   enterHandler?: PassHandler
   draggableClassName?: string
