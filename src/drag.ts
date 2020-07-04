@@ -1,4 +1,6 @@
 import { freeDragConfig } from './type'
+import { getPositions } from './helpers/position'
+import { moveElement, normalizeElement } from './helpers/element'
 
 function freeDrag(config: freeDragConfig) {
   const { element, leaveHandler, enterHandler, draggableClassName } = config
@@ -7,19 +9,11 @@ function freeDrag(config: freeDragConfig) {
 
   element.onmousedown = function(downEvent) {
     let currentBelow: any = null
-    const style = window.getComputedStyle(element)
-    const marginLeft = numberize(style.marginLeft)
-    const marginTop = numberize(style.marginTop)
-    const paddingLeft = numberize(style.paddingLeft)
-    const paddingTop = numberize(style.paddingTop)
-    const paddingRight = numberize(style.paddingRight)
-    const paddingBottom = numberize(style.paddingBottom)
-    const offsetX = downEvent.clientX - element.getBoundingClientRect().left + marginLeft
-    const offsetY = downEvent.clientY - element.getBoundingClientRect().top + marginTop
-    const { innerHeight, innerWidth } = window
-    const { offsetHeight, offsetWidth } = element
-    normalizeElement()
-    moveAt(downEvent.pageX, downEvent.pageY)
+    const positions: any = getPositions(downEvent, element)
+
+    normalizeElement(element)
+
+    moveElement(downEvent.pageX, downEvent.pageY, element, positions)
 
     document.addEventListener('mousemove', moveHandler, false)
 
@@ -28,32 +22,9 @@ function freeDrag(config: freeDragConfig) {
       document.onmouseup = null
     }
 
-    function normalizeElement() {
-      element.style.position = 'fixed'
-      element.style.zIndex = '1000'
-      element.style.cursor = 'pointer'
-    }
-
-    function numberize(str: string): number {
-      return Number(str.split('px')[0])
-    }
-
-    function moveAt(pageX: number, pageY: number) {
-      const x = Math.min(
-        Math.max(0 - paddingLeft - marginLeft, pageX - offsetX),
-        innerWidth - offsetWidth + paddingRight - marginLeft
-      )
-      const y = Math.min(
-        Math.max(0 - paddingTop - marginTop, pageY - offsetY),
-        innerHeight - offsetHeight + paddingBottom - marginTop
-      )
-      element.style.left = x + 'px'
-      element.style.top = y + 'px'
-    }
-
     function moveHandler(moveEvent: MouseEvent) {
       const { pageX, pageY } = moveEvent
-      moveAt(pageX, pageY)
+      moveElement(moveEvent.pageX, moveEvent.pageY, element, positions)
       processBelowElement()
 
       function processBelowElement() {
