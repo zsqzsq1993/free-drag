@@ -3,7 +3,7 @@ import { getPositions } from '../helpers/position'
 import { moveElement, normalizeElement } from './element'
 import { processBelowElement } from './belowElement'
 
-function freeDrag(config: FreeDragConfig) {
+function drag(config: FreeDragConfig) {
   let { element, leaveHandler, enterHandler, draggableClassName } = config
 
   element!.ondragstart = () => false
@@ -36,4 +36,4 @@ function freeDrag(config: FreeDragConfig) {
   }
 }
 
-export default freeDrag
+export default drag

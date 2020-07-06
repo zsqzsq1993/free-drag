@@ -1,3 +1,3 @@
-import draggable from './core/drag'
+import freedrag from './freedrag'
 
-export default draggable
+export default freedrag
