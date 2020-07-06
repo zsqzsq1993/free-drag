@@ -1,5 +1,5 @@
 import freeDrag from "../../src"
-const ball = document.getElementById('ball')
+const ball = document.getElementById('ball1')
 
 if (ball) {
   freeDrag({

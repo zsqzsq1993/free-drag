@@ -11,15 +11,7 @@ if (
   throw new Error('One of balls does not exsist')
 }
 
-freedrag(ball1, {
-  draggableClassName: 'draggable',
-  leaveHandler(below) {
-    below.style.background = 'white'
-  },
-  enterHandler(below) {
-    below.style.background = 'rgba(255,0,0,0.5)'
-  }
-})
+freedrag(ball1, {})
 freedrag({
   element: ball2
 })
