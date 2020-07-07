@@ -3,6 +3,8 @@ export interface FreeDragConfig {
   leaveHandler?: PassHandler
   enterHandler?: PassHandler
   draggableClassName?: string
+
+  [key: string]: any
 }
 
 export interface PassHandler {

@@ -4,7 +4,6 @@ const ball = document.getElementById('ball1')
 if (ball) {
   freeDrag({
     element: ball,
-    draggableClassName: 'draggable',
     leaveHandler(below) {
       below.style.background = 'white'
     },
