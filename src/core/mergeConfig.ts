@@ -7,6 +7,7 @@ const strategies: any = (function() {
   customOnly.forEach(item => {
     tempt[item] = customStrategy
   })
+  tempt.boundary = boundaryStrategy
   return tempt
 })()
 
@@ -51,6 +52,24 @@ function defaultStrategy(defaultVal: any, customVal: any) {
   } else {
     return customVal
   }
+}
+
+function boundaryStrategy(defaultVal: any, customVal: any) {
+  const keys = ['left', 'top', 'right', 'bottom']
+  const obj = Object.create(null)
+  if (!customVal) {
+    customVal = Object.create(null)
+  }
+  keys.forEach(key => {
+    const cus = customVal[key]
+    const def = defaultVal[key]
+    if (typeof cus === 'number') {
+      obj[key] = cus
+    } else if (typeof def === 'number') {
+      obj[key] = def
+    }
+  })
+  return obj
 }
 
 export default mergeConfig

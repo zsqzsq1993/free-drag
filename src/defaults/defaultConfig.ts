@@ -5,7 +5,17 @@ const defaultConfig: FreeDragConfig = {
 
   onlyHorizontalMove: false,
 
-  onlyVerticalMove: false
+  onlyVerticalMove: false,
+
+  boundary: {
+    left: 0,
+
+    right: window.innerWidth,
+
+    top: 0,
+
+    bottom: window.innerHeight
+  }
 }
 
 export default defaultConfig

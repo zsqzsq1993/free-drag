@@ -1,4 +1,5 @@
 import { retPosViaEvent } from '../helpers/utils'
+import { FreeDragConfig } from '../type'
 
 export function normalizeElement(element: HTMLElement) {
   element.style.position = 'fixed'
@@ -7,11 +8,9 @@ export function normalizeElement(element: HTMLElement) {
 }
 
 export function moveElement(
+  config: FreeDragConfig,
   event: MouseEvent | TouchEvent,
-  element: HTMLElement,
-  positions: any,
-  onlyHorizontalMove: boolean,
-  onlyVerticalMove: boolean
+  positions: any
 ) {
   const {
     marginLeft,
@@ -22,11 +21,11 @@ export function moveElement(
     paddingBottom,
     offsetX,
     offsetY,
-    innerHeight,
-    innerWidth,
     offsetHeight,
     offsetWidth
   } = positions
+  const { element, onlyHorizontalMove, onlyVerticalMove, boundary } = config
+  const { left, right, top, bottom } = boundary
   const { pageX, pageY } = retPosViaEvent(event)
 
   if (onlyHorizontalMove && onlyVerticalMove) {
@@ -36,19 +35,19 @@ export function moveElement(
   const x = onlyVerticalMove
     ? ''
     : Math.min(
-        Math.max(0 - paddingLeft - marginLeft, pageX - offsetX),
-        innerWidth - offsetWidth + paddingRight - marginLeft
+        Math.max(left! - paddingLeft - marginLeft, pageX - offsetX),
+        right! - offsetWidth + paddingRight - marginLeft
       )
   const y = onlyHorizontalMove
     ? ''
     : Math.min(
-        Math.max(0 - paddingTop - marginTop, pageY - offsetY),
-        innerHeight - offsetHeight + paddingBottom - marginTop
+        Math.max(top! - paddingTop - marginTop, pageY - offsetY),
+        bottom! - offsetHeight + paddingBottom - marginTop
       )
   if (x) {
-    element.style.left = x + 'px'
+    element!.style.left = x + 'px'
   }
   if (y) {
-    element.style.top = y + 'px'
+    element!.style.top = y + 'px'
   }
 }

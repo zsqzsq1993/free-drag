@@ -4,14 +4,7 @@ import { moveElement, normalizeElement } from './element'
 import { processBelowElement } from './belowElement'
 
 function drag(config: FreeDragConfig) {
-  let {
-    element,
-    leaveHandler,
-    enterHandler,
-    draggableClassName,
-    onlyHorizontalMove,
-    onlyVerticalMove
-  } = config
+  let { element, leaveHandler, enterHandler, draggableClassName } = config
 
   element!.ondragstart = () => false
 
@@ -22,7 +15,7 @@ function drag(config: FreeDragConfig) {
 
     normalizeElement(element!)
 
-    moveElement(downEvent, element!, positions, onlyHorizontalMove!, onlyVerticalMove!)
+    moveElement(config, downEvent, positions)
 
     addEventHandlers()
 
@@ -33,7 +26,7 @@ function drag(config: FreeDragConfig) {
       }
 
       document.onmousemove = document.ontouchmove = function(moveEvent: MouseEvent | TouchEvent) {
-        moveElement(moveEvent, element!, positions, onlyHorizontalMove!, onlyVerticalMove!)
+        moveElement(config, moveEvent, positions)
 
         if (draggableClassName && (leaveHandler || enterHandler)) {
           processBelow(moveEvent, draggableClassName, enterHandler!, leaveHandler!)

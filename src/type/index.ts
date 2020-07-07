@@ -5,6 +5,7 @@ export interface FreeDragConfig {
   draggableClassName?: string
   onlyHorizontalMove?: boolean
   onlyVerticalMove?: boolean
+  boundary?: any
 
   [key: string]: any
 }
