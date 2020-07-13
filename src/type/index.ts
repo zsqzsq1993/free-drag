@@ -1,3 +1,10 @@
+interface MoveHandler {
+  onMoveStart?: any
+  onMove?: any
+  onMoveEnd?: any
+  onMoveInterval?: number
+}
+
 export interface FreeDragConfig {
   element?: HTMLElement
   leaveHandler?: PassHandler
@@ -6,6 +13,7 @@ export interface FreeDragConfig {
   onlyHorizontalMove?: boolean
   onlyVerticalMove?: boolean
   boundary?: any
+  moveHandler?: MoveHandler
 
   [key: string]: any
 }
