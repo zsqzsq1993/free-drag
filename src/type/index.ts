@@ -16,6 +16,7 @@ export interface PassHandler {
 
 export interface FreeDrag {
   draggable(config: FreeDragConfig): void
+  undraggable(element: HTMLElement): void
 }
 
 export interface FreeDragInstance extends FreeDrag {

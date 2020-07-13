@@ -9,7 +9,7 @@ class FreeDrag {
     this.defaults = defaults
   }
 
-  draggable(element: HTMLElement, config?: FreeDragConfig) {
+  draggable(element: HTMLElement, config?: FreeDragConfig): void {
     if (element instanceof HTMLElement) {
       if (!config) {
         config = {}
@@ -22,6 +22,13 @@ class FreeDrag {
     config = mergeConfig(this.defaults, config)
 
     drag(config)
+  }
+
+  undraggable(element: HTMLElement): void {
+    element.style.cursor = 'auto'
+    element.onmousedown = element.ontouchstart = null
+    document.onmousemove = document.ontouchmove = null
+    document.onmouseup = document.ontouchend = null
   }
 }
 

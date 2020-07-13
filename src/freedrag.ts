@@ -5,7 +5,7 @@ import defaultConfig from './defaults/defaultConfig'
 
 function createInstance(config: FreeDragConfig): FreeDragInstance {
   const context = new FreeDrag(config)
-  let instance = FreeDrag.prototype.draggable.bind(context)
+  let instance = FreeDrag.prototype.draggable.bind(context) // important这样this.defaults才会被正确调用
   instance = extend(instance, context)
   return instance as FreeDragInstance
 }
