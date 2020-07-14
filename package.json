@@ -35,7 +35,9 @@
     "semantic-release": "semantic-release",
     "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
     "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once"
+    "travis-deploy-once": "travis-deploy-once",
+    "prepublish": "npm run lint && npm run build",
+    "publish": "sh release.sh"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
@@ -124,6 +126,7 @@
     "typedoc": "^0.12.0",
     "typescript": "^3.0.3",
     "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0"
   }

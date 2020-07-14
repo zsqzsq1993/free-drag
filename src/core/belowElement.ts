@@ -20,11 +20,11 @@ export function processBelowElement(element: HTMLElement) {
     }
     if (currentBelow !== belowDraggable) {
       if (currentBelow) {
-        leaveHandler!(currentBelow, element)
+        leaveHandler(currentBelow, element)
       }
       currentBelow = belowDraggable
       if (currentBelow) {
-        enterHandler!(currentBelow, element)
+        enterHandler(currentBelow, element)
       }
     }
   }

@@ -35,14 +35,14 @@ export function moveElement(
   const x = onlyVerticalMove
     ? ''
     : Math.min(
-        Math.max(left! - paddingLeft - marginLeft, pageX - offsetX),
-        right! - offsetWidth + paddingRight - marginLeft
+        Math.max(left - paddingLeft - marginLeft, pageX - offsetX),
+        right - offsetWidth + paddingRight - marginLeft
       )
   const y = onlyHorizontalMove
     ? ''
     : Math.min(
-        Math.max(top! - paddingTop - marginTop, pageY - offsetY),
-        bottom! - offsetHeight + paddingBottom - marginTop
+        Math.max(top - paddingTop - marginTop, pageY - offsetY),
+        bottom - offsetHeight + paddingBottom - marginTop
       )
   if (x) {
     element!.style.left = x + 'px'
