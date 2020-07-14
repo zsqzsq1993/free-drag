@@ -14,7 +14,7 @@ function drag(config: FreeDragConfig) {
 
     const processBelow = processBelowElement(element!)
 
-    processStart(moveHandler)
+    processStart(moveHandler, downEvent)
 
     normalizeElement(element!)
 
@@ -23,8 +23,8 @@ function drag(config: FreeDragConfig) {
     addEventHandlers()
 
     function addEventHandlers() {
-      document.onmouseup = document.ontouchend = function() {
-        processEnd(moveHandler)
+      document.onmouseup = document.ontouchend = function(upEvent: MouseEvent | TouchEvent) {
+        processEnd(moveHandler, upEvent)
         document.onmousemove = document.ontouchmove = null
         document.onmouseup = document.ontouchend = null
       }

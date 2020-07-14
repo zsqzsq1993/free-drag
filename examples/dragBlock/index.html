@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>simple</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      .blocks-wrapper {
+        width: 760px;
+      }
+      .block-wrapper {
+        width: 760px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .block {
+        width: 755px;
+        height: 55px;
+        font-size: 38px;
+        line-height: 55px;
+        border: 1px dashed black;
+        text-align: center;
+        vertical-align: top;
+      }
+    </style>
+</head>
+<body>
+    <div class="blocks-wrapper">
+      <div class="block-wrapper">
+        <div class="block draggable">apple</div>
+      </div>
+      <div class="block-wrapper">
+        <div class="block draggable">banana</div>
+      </div>
+      <div class="block-wrapper">
+        <div class="block draggable">orange</div>
+      </div>
+      <div class="block-wrapper">
+        <div class="block draggable">straberry</div>
+      </div>
+      <div class="block-wrapper">
+        <div class="block draggable">watermelon</div>
+      </div>
+    </div>
+    <script src="/__build__/dragBlock.js"></script>
+</body>
+</html>

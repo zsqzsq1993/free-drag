@@ -19,7 +19,7 @@ export interface FreeDragConfig {
 }
 
 export interface PassHandler {
-  (belowElement: HTMLElement): void
+  (belowElement: HTMLElement, element: HTMLElement): void
 }
 
 export interface FreeDrag {

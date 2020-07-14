@@ -1,15 +1,15 @@
 import any = jasmine.any
 
-export function processStart(moveHandler: any): void {
+export function processStart(moveHandler: any, event: MouseEvent | TouchEvent): void {
   if (moveHandler && moveHandler.onMoveStart) {
-    moveHandler.onMoveStart()
+    moveHandler.onMoveStart(event)
   }
 }
 
-export function processEnd(moveHandler: any): void {
+export function processEnd(moveHandler: any, event: MouseEvent | TouchEvent): void {
   if (moveHandler && moveHandler.onMoveEnd) {
     processMove(null, new MouseEvent('click'), true)
-    moveHandler.onMoveEnd()
+    moveHandler.onMoveEnd(event)
   }
 }
 
