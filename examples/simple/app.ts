@@ -12,9 +12,11 @@ if (
 }
 
 freedrag(ball1, {})
+
 freedrag({
   element: ball2
 })
+
 freedrag.draggable({
   element: ball3
 })
