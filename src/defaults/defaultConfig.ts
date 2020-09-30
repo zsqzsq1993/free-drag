@@ -15,7 +15,9 @@ const defaultConfig: FreeDragConfig = {
     top: 0,
 
     bottom: window.innerHeight
-  }
+  },
+
+  preventDefaultTouch: true
 }
 
 export default defaultConfig

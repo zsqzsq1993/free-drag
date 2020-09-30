@@ -1,3 +1,5 @@
+import {truncate} from "fs"
+
 interface MoveHandler {
   onMoveStart?: any
   onMove?: any
@@ -14,6 +16,7 @@ export interface FreeDragConfig {
   onlyVerticalMove?: boolean
   boundary?: any
   moveHandler?: MoveHandler
+  preventDefaultTouch?: true
 
   [key: string]: any
 }

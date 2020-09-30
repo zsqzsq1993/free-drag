@@ -5,9 +5,17 @@ import { processBelowElement } from './belowElement'
 import { processStart, processEnd, processMove } from './moveHandler'
 
 function drag(config: FreeDragConfig) {
-  let { element, leaveHandler, enterHandler, draggableClassName, moveHandler } = config
+  let { element, leaveHandler, enterHandler, draggableClassName, moveHandler, preventDefaultTouch } = config
 
   element!.ondragstart = () => false
+
+  if (preventDefaultTouch) {
+    document.body.addEventListener('touchmove' , function(e){
+      e.preventDefault();
+    }, {
+      passive: false
+    })
+  }
 
   element!.onmousedown = element!.ontouchstart = function(downEvent: MouseEvent | TouchEvent) {
     const positions: any = getPositions(downEvent, element!)
