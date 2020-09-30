@@ -1,6 +1,6 @@
 {
   "name": "free-drag",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "A lightweight library making elements being able to drag and drop in both pc and mobile.",
   "keywords": [
     "drag-and-drop"
