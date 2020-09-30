@@ -15,5 +15,5 @@ then
   git push origin master
 
   # publish
-  npm publish --allow-same-version
+  npm publish
 fi
