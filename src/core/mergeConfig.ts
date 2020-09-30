@@ -56,7 +56,9 @@ function defaultStrategy(defaultVal: any, customVal: any) {
 
 function boundaryStrategy(defaultVal: any, customVal: any) {
   const keys = ['left', 'top', 'right', 'bottom']
+
   const obj = Object.create(null)
+
   if (!customVal) {
     customVal = Object.create(null)
   }

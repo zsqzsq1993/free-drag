@@ -30,4 +30,5 @@ export interface FreeDrag {
 export interface FreeDragInstance extends FreeDrag {
   (element: HTMLElement, config?: FreeDragConfig): void
   (config: FreeDragConfig): void
+  createNewInstance(config: FreeDragConfig): void
 }
